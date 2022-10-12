@@ -24,6 +24,8 @@ app.use("/api", require("./routes/api"));
 
 app.listen(process.env.PORT || 4000, () => {
     console.log("done!!")
+    console.log(process.env.DB_HOST)
+
 });
 
 module.exports = app;
