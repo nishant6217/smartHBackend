@@ -1,9 +1,9 @@
 const { Client } = require('pg')
 const client = new Client({
   user: 'development',
-  host: 'smarth.cbvyusbuqyjt.ap-south-1.rds.amazonaws.com',
+  host: process.env.DB_HOST,
   database: 'smartHDB',
-  password: 'Credflow!11',
+  password: process.env.DB_PASSWORD,
   port: 5432,
 })
 
