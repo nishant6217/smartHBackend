@@ -12,25 +12,25 @@ const CHUNK_SIZE = 100;
         sourceFile: "./Sample Datasheet.xlsx"
     });
     console.log('Start Data Queue');
-    // for (const sheet in result) {
-    //     const sheetData = result[sheet];
-    //     sheetData.splice(0, 1);
+    for (const sheet in result) {
+        const sheetData = result[sheet];
+        sheetData.splice(0, 1);
 
-    //     while (sheetData.length > 0) {
-    //         const dataArr = sheetData.splice(0, CHUNK_SIZE);
+        while (sheetData.length > 0) {
+            const dataArr = sheetData.splice(0, CHUNK_SIZE);
 
-    //         const res = await Promise.all(
-    //             dataArr.map(row => pushMessageToSQS({
-    //                 sensorId: row.A,
-    //                 timeStamp: row.B,
-    //                 duration: row.C,
-    //                 current: row.D,
-    //                 voltage: row.E
-    //             }))
-    //         );
+            const res = await Promise.all(
+                dataArr.map(row => pushMessageToSQS({
+                    sensorId: row.A,
+                    timeStamp: row.B,
+                    duration: row.C,
+                    current: row.D,
+                    voltage: row.E
+                }))
+            );
 
-    //     }
-    // }
+        }
+    }
     console.log('End Data Queue');
     console.log("Start Data Polling")
     await polling();
